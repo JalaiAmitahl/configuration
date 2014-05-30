@@ -1,0 +1,10 @@
+Important vim bundles:
+
+1) pathogen
+2) vundle
+3) NERDTree
+4) Joonty's PHPQA plugin:  https://github.com/joonty/vim-phpqa
+5) vim-rooter
+6) vim-markdown
+
+
