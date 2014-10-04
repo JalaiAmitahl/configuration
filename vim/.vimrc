@@ -9,14 +9,14 @@ set nu
 set ruler
 set wrap!
 set background=dark
-syntax enable
-colorscheme solarized
-set noexpandtab
+set expandtab
 set incsearch
 set hlsearch
 set shiftwidth=4
 set tabstop=4
 set foldmethod=syntax
+syntax enable
+colorscheme solarized
 
 " Vundle Settings
 set nocompatible
@@ -101,8 +101,3 @@ set statusline+=%=
 set statusline+=%2*%l(%c)/%L\ -\ %p%%%3*
 set statusline+=\ \ \ \ \ \ \ \ \ \ \ \
 set statusline+=%0*
-
-"""" PHP QA SETUP """""
-
-" Code Sniffer Setup
-let g:phpqa_codesniffer_args = "--standard=/Users/dtaylor/config/CodeSniffer/Synacor/CE/ruleset.xml --extensions=php,inc"
