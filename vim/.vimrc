@@ -39,6 +39,21 @@ filetype plugin indent on
 " NERD Tree Settings
 autocmd vimenter * if !argc() | NERDTree | endif
 
+" Java & Maven Settings
+autocmd Filetype java compiler mvn
+autocmd Filetype pom compiler mvn
+autocmd Filetype java no <F2> :make clean package<CR>
+autocmd Filetype java no <S-F2> :make clean package site site:stage<CR>
+autocmd Filetype java no <C-F2> :make clean<CR>
+autocmd Filetype java no <F3> :make 
+autocmd Filetype java no <S-F3> :make clean deploy site site:stage site:deploy<CR>
+autocmd Filetype pom no <F2> :make clean package<CR>
+autocmd Filetype pom no <S-F2> :make clean package site site:stage<CR>
+autocmd Filetype pom no <C-F2> :make clean<CR>
+autocmd Filetype pom no <F3> :make 
+autocmd Filetype pom no <S-F3> :make clean deploy site site:stage site:deploy<CR>
+autocmd QuickFixCmdPost [^l]* nested cwindow
+autocmd QuickFixCmdPost    l* nested lwindow
 
 " Key Mappings
 "

@@ -10,6 +10,14 @@ function fetchPathogen() {
     fi
 }
 
+function fetchMavenCompiler() {
+    if [ $1 -ne 1 ]; then
+        git clone https://github.com/JalaiAmitahl/maven-compiler.vim.git ~/.vim/bundle/maven-compiler.vim
+    else
+        echo "Skipping Maven Compiler Plugin..."
+    fi
+}
+
 function fetchSolarized() {
     if [ $1 -ne 1 ]; then
         pushd ~/.vim/bundle/
@@ -78,6 +86,7 @@ function run() {
     local skipVundle=0
     local skipNerdTree=0
     local skipVimRC=0
+    local skipMavenCompiler=0
     if [ "$#" != 0 ]; then
         while (( $# )); do
             if [ "$1" = "-h" ]; then
@@ -87,6 +96,8 @@ function run() {
             fi
             if [ "$1" = "-nF" ]; then
                 skipFugitive=1
+            elif [ "$1" = "-nM" ]; then
+                skipMavenCompiler=1
             elif [ "$1" = "-nP" ]; then
                 skipPathogen=1
             elif [ "$1" = "-nS" ]; then
@@ -104,6 +115,7 @@ function run() {
 
     fetchPathogen $skipPathogen
     fetchFugitive $skipFugitive
+    fetchMavenCompiler $skipMavenCompiler
     fetchSolarized $skipSolarized
     fetchNerdTree $skipNerdTree
     fetchVundle $skipVundle
