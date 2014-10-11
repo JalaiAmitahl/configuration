@@ -18,6 +18,25 @@ function fetchMavenCompiler() {
     fi
 }
 
+function setupOthers() {
+    if [ $1 -ne 1 ]; then
+        if [ ! -d "~/.vim/doc" ]; then
+            mkdir ~/.vim/doc
+        fi
+        if [ ! -d "~/.vim/plugin" ]; then
+            mkdir ~/.vim/plugin
+        fi
+        if [ ! -d "~/.vim/autoload" ]; then
+            mkdir ~/.vim/autoload
+        fi
+        cp autoload/* ~/.vim/autoload/
+        cp plugin/* ~/.vim/plugin/
+        cp doc/* ~/.vim/doc/
+    else
+        echo "Skipping others setup...."
+    fi
+}
+
 function fetchSolarized() {
     if [ $1 -ne 1 ]; then
         pushd ~/.vim/bundle/
@@ -87,6 +106,7 @@ function run() {
     local skipNerdTree=0
     local skipVimRC=0
     local skipMavenCompiler=0
+    local skipOthers=0
     if [ "$#" != 0 ]; then
         while (( $# )); do
             if [ "$1" = "-h" ]; then
@@ -98,6 +118,8 @@ function run() {
                 skipFugitive=1
             elif [ "$1" = "-nM" ]; then
                 skipMavenCompiler=1
+            elif [ "$1" = "-nO" ]; then
+                skipOthers=1
             elif [ "$1" = "-nP" ]; then
                 skipPathogen=1
             elif [ "$1" = "-nS" ]; then
@@ -119,6 +141,7 @@ function run() {
     fetchSolarized $skipSolarized
     fetchNerdTree $skipNerdTree
     fetchVundle $skipVundle
+    setupOthers $skipOthers
     copyVimRc $skipVimRC
 }
 
